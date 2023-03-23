@@ -1,15 +1,15 @@
 #!/bin/bash
 
-fname=users.csv
-fname_export=users_export.csv
-rm $fname
-rm $fname_export
+# Input files
+fname=$(mktemp)
+fname_export=users.csv
 
 let count=0
-for n in $(seq -f "%02g" 1 99)
+
+cat ${fname_export} | while read line
 do
-    pass=$(gpw 1)
-    usr="lab$n"
+    usr=$(echo $line | cut -d ":", -f1)
+    pass=$(echo $line | cut -d ":", -f2)
 
     # Check if user exists
     if id -u "$usr" > /dev/null 1>&1
@@ -27,10 +27,10 @@ do
     if id -u "jupyter-$usr" > /dev/null 1>&1
     then
         userdel -rf jupyter-$usr
-	groupdel jupyter-$usr
+	    groupdel jupyter-$usr
     fi
 
-    # Create the user and add to groups
+    # Create the jupyter user and add to groups
     groupadd jupyter-$usr --gid $((3000+count))
     adduser jupyter-$usr --disabled-password --gecos "" --uid $((3000+count)) --gid $((3000+count))
 
@@ -40,12 +40,13 @@ do
     adduser jupyter-$usr video
     adduser jupyter-$usr render
 
-    #change password for user
     echo "$usr:$pass" >> $fname
-    echo "$usr:$pass" >> $fname_export   
     echo "jupyter-$usr:$pass" >> $fname
+
+    # Increment counter
     let count++
 done
 
 # Batch change user passwords
 chpasswd < $fname
+rm -rf $fname
