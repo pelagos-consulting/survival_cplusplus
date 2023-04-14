@@ -14585,7 +14585,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <p>Alternatively, you can use <strong>wget</strong> to download the course material on the command line.</p>
 <div class="highlight"><pre><span></span>wget https://github.com/pelagos-consulting/survival_cplusplus/archive/refs/heads/main.zip
 </pre></div>
-<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>In order to understand kernels in HIP, CUDA, and OpenCL we need to have a grasp on the small subset of C++ in use. Although C++ is the language of choice for many real-world scientific applications, it is more complex to understand than plain C, and that extra complexity may get in the way. This course will use mostly the C subset of the C++ language for simplicity, but we use C++ compilers and tools so that we can use a couple of advanced C++ features if necessary. In this lesson we cover just the barest of essential C/C++ syntax. Topics to be covered are:</p>
+<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>In order to understand software written for frameworks like HIP, CUDA, and OpenCL we need to have a rudimentary grasp of the C++ language. Although C++ is the language of choice for many real-world scientific applications, it can be more complex to understand than plain C, and that extra complexity may get in the way. This course is designed to impart just enough "Survival C++" in order to be productive with scientific computing. It also aims to deliver fundamental information such as how number are represented in binary. Topics to be covered are:</p>
 <ul>
 <li>Making code understandable with comments</li>
 <li>Statements and code blocks</li>
@@ -14612,8 +14612,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="cm">multiline comment</span>
 <span class="cm">*/</span><span class="w"></span>
 </pre></div>
-<h2 id="Statements-and-code-blocks">Statements and code blocks<a class="anchor-link" href="#Statements-and-code-blocks">&#182;</a></h2><p>A statement is a line of code. Since C++ doesn't use new lines to separate statements, then every statement must have an ending. C++ uses the semicolon ";" character to end statements.</p>
-<div class="highlight"><pre><span></span><span class="c1">// This is a statement that declares and integer with value 2</span>
+<h2 id="Statements-and-code-blocks">Statements and code blocks<a class="anchor-link" href="#Statements-and-code-blocks">&#182;</a></h2><p>A statement is a line of code. Since C++ doesn't use new lines to separate statements, every statement must have an ending. C++ uses the semicolon <code>;</code> character to end statements.</p>
+<div class="highlight"><pre><span></span><span class="c1">// This is a statement that declares an integer with the value 2</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 <p><strong>Code blocks</strong> are collections of statements enclosed by a starting brace <strong>"{"</strong>, and ending with an end brace <strong>"}"</strong>. Variables declared within code blocks do not exist outside their enclosing code block.</p>
@@ -14621,14 +14621,14 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"> </span><span class="c1">// Ending a code block</span>
 </pre></div>
-<p>It is good practice to indent the code that lies within a code block, as demonstrated above. The code for functions is also contained within a code block. In fact all the code that runs in a C++ program is launched from a single function called <strong>main</strong>. Here is the source code for a complete C++ program.</p>
+<p>It is good practice to indent the code that lies within a code block, as demonstrated above. The code for a function is also contained within a code block. In fact, all the code that runs in a C++ program is launched from a single function called <strong>main</strong>. Here is the source code for a complete C/C++ program.</p>
 <div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Code for the program goes within this code block</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 <p>There can only be one <strong>main</strong> function in a program.</p>
-<h2 id="Basic-data-types">Basic data types<a class="anchor-link" href="#Basic-data-types">&#182;</a></h2><p>There are only really two kinds of data types, integers and floats, with varying numbers of bits to represent them. Every other data type is a reinterpretation or compound mixture of these basic data types.</p>
+<h2 id="Basic-data-types">Basic data types<a class="anchor-link" href="#Basic-data-types">&#182;</a></h2><p>Bits (1's or 0's) are the fundamental data type in computing. Everything else is represented using an arrangement of bits. Integers and floating point numbers are a standardised way of representing numbers, typically using multiples of 8 bits (called <strong>Bytes</strong>) to represent information. Other datatypes are a reinterpretation, or compound mixture of these basic data types.</p>
 
 </div>
 </div>
