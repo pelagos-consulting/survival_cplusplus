@@ -15492,7 +15492,7 @@ $$S_{i+1} = S_{i} N_{i}.$$
 <h3 id="Printing-variables-in-C++">Printing variables in C++<a class="anchor-link" href="#Printing-variables-in-C++">&#182;</a></h3><p>In C++ you can print variables to standard output using the <strong>std::cout</strong> function if you include <strong><iostream></iostream></strong> in the header.</p>
 <div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 </pre></div>
-<p>Then you can use <strong>std::cout</strong> in the following way to print variables. Note that one does not have to choose a format method.</p>
+<p>Then you can use <strong>std::cout</strong> in the following way to print variables. We use the insertion operator <code>&lt;&lt;</code> to send variables to <strong>std::cout</strong>. Note that one does not have to choose a format method. We can use the insertion operator multiple times on one line.</p>
 <div class="highlight"><pre><span></span><span class="c1">// Print the C-string f and a new line</span>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"></span>
 
@@ -15703,9 +15703,7 @@ $$S_{i+1} = S_{i} N_{i}.$$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h1><p>In the section below are a few interactive exercises in C++. You will likely need to download the course material using the command below:</p>
-<div class="highlight"><pre><span></span>git clone &lt;git_repository&gt;
-</pre></div>
+<h1 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h1><p>In the section below are a few interactive exercises in C++.</p>
 
 </div>
 </div>
@@ -15722,12 +15720,12 @@ $$S_{i+1} = S_{i} N_{i}.$$
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Print all the arguments passed into the application</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">argc</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Put a new line </span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 
@@ -15755,9 +15753,9 @@ $$S_{i+1} = S_{i} N_{i}.$$
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Steps">Steps<a class="anchor-link" href="#Steps">&#182;</a></h3><ol>
 <li>Copy the above program to a file called <strong>repeater.cpp</strong> in the same directory as the course material. You can use any text editor that you have available.</li>
-<li>Compile the code with your compiler. In this instance we use a C++ compiler called <strong>CC</strong> to compile the code.
+<li>Compile the code with your compiler. In this instance we use a C++ compiler called <strong>g++</strong> to compile the code.
 <br/>
-<pre><code>CC repeater.cpp -o repeater.exe</code></pre>
+<pre><code>g++ repeater.cpp -o repeater.exe</code></pre>
 <br/></li>
 <li>Run the code,
 <br/>
@@ -15765,7 +15763,7 @@ $$S_{i+1} = S_{i} N_{i}.$$
 <br/>
 notice that argument 0 is the name of the program being called. </li>
 <li>Add <code>#include &lt;iostream&gt;</code> to the header definition of <strong>repeater.cpp</strong> in order to access string handling functionality like <strong>std::cout</strong>.</li>
-<li>Replace all calls of <strong>std::printf</strong> with <strong>std::cout*</strong></li>
+<li>Replace all calls to <strong>std::printf</strong> with <strong>std::cout</strong> and </li>
 <li>Compile the code again</li>
 <li>Check to see the code behaves as before.</li>
 </ol>
@@ -15780,11 +15778,11 @@ notice that argument 0 is the name of the program being called. </li>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Exercise-2:-Debugging-with-GDB-and-printf">Exercise 2: Debugging with <strong>GDB</strong> and <strong>printf</strong><a class="anchor-link" href="#Exercise-2:-Debugging-with-GDB-and-printf">&#182;</a></h2><p>The program <a href="image_creator.cpp">image_creator.cpp</a> contains most of the concepts in C++ that are taught in this lesson. Aside from a few lines of example code the main function of this program is to write out a binary file for an image of 32-bit floats of size (NROWS_C=4, NCOLS_C=6). Every pixel contains the dimension 0 coordinate multiplied by the dimension 1 coordinate. The program has a couple of memory errors, one of them is causing the program to crash. Your job is to find these errors using <strong>printf</strong> and the GNU debugger GDB.</p>
+<h2 id="Exercise-2:-Debugging-with-GDB-and-printf">Exercise 2: Debugging with <strong>GDB</strong> and <strong>printf</strong><a class="anchor-link" href="#Exercise-2:-Debugging-with-GDB-and-printf">&#182;</a></h2><p>The program <a href="image_creator.cpp">image_creator.cpp</a> contains most of the concepts in C++ that are taught in this lesson. Aside from a few lines of example code the main function of this program is to write out a binary file for an image of 32-bit floats of size (NROWS_C=4, NCOLS_C=6). Every pixel contains the dimension 0 coordinate multiplied by the dimension 1 coordinate. The program has a couple of memory errors, one of them is causing the program to crash. Your job is to find these errors using <strong>std::printf</strong> and the GNU debugger GDB.</p>
 <h3 id="Steps">Steps<a class="anchor-link" href="#Steps">&#182;</a></h3><ol>
 <li>Open the file using this <a href="image_creator.cpp">link</a> and have a look to see what the file is doing.</li>
 <li>Open a terminal and use <strong>cd</strong> to navigate to the <strong>src/L0_Survival_C++</strong> directory.</li>
-<li>Type <strong>make clean</strong> and then <strong>make</strong> (on Linux) to make the program <strong>image_creator.exe</strong>. Notice that we changed the makefile to compile with flags "-g -O0". This enables debugging symbols and turns off all optimisations that might hide code. We could also have compiled the source file directly by typing <br/><br/><div class="highlight"><pre><span></span>CC -g -O0 image_creator.cpp -o image_creator.exe
+<li>Type <strong>make clean</strong> and then <strong>make</strong> (on Linux) to make the program <strong>image_creator.exe</strong>. Notice that we changed the makefile to compile with flags "-g -O0". This enables debugging symbols and turns off all optimisations that might hide code. We could also have compiled the source file directly by typing <br/><br/><div class="highlight"><pre><span></span>g++ -g -O0 image_creator.cpp -o image_creator.exe
 </pre></div>
 <br/></li>
 <li>Run the program <code>./image_creator.exe</code> to verify that it crashes.</li>
@@ -15877,7 +15875,7 @@ malloc(): corrupted top size
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="The-solution-if-you-get-stuck">The solution if you get stuck<a class="anchor-link" href="#The-solution-if-you-get-stuck">&#182;</a></h3><p>You can always peek at the solution <a href="image_creator_answer.cpp">image_creator_answer</a>. The bugs are fixed, and it can be compiled with either <strong>make</strong> or</p>
-<div class="highlight"><pre><span></span>CC -g -O0 -I../include image_creator_answer.cpp -o image_creator_answer.exe
+<div class="highlight"><pre><span></span>g++ -g -O0 -I../include image_creator_answer.cpp -o image_creator_answer.exe
 </pre></div>
 
 </div>
