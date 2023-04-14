@@ -15136,11 +15136,10 @@ $$-2^{7} + 2^{4} + 2^{3} = -104 $$$$-128 + 16 + 8 = -104 $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Printing-values">Printing values<a class="anchor-link" href="#Printing-values">&#182;</a></h2><p>The function <a href="https://www.cplusplus.com/reference/cstdio/printf"><strong>printf</strong></a> from the standard library offers a way to print variables to the command line. You need to include <strong>\&lt;cstdio&gt;</strong> in the header of the program, like this:</p>
+<h2 id="Printing-values">Printing values<a class="anchor-link" href="#Printing-values">&#182;</a></h2><h3 id="C-style-printing">C-style printing<a class="anchor-link" href="#C-style-printing">&#182;</a></h3><p>The function <a href="https://www.cplusplus.com/reference/cstdio/printf"><strong>printf</strong></a> from the standard library offers a C-like way to print variables to the command line. You need to include <strong>\&lt;cstdio&gt;</strong> in the header of the program, like this:</p>
 <div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 </pre></div>
-<p>The function is to be used like follows:</p>
+<p>The <strong>printf</strong> function is used like this:</p>
 <div class="highlight"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="sc">&#39;s&#39;</span><span class="p">;</span><span class="w"></span>
 <span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="mf">5.0</span><span class="p">;</span><span class="w"></span>
 <span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="mf">6.0</span><span class="p">;</span><span class="w"></span>
@@ -15153,14 +15152,19 @@ $$-2^{7} + 2^{4} + 2^{3} = -104 $$$$-128 + 16 + 8 = -104 $$
 <span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%i %zu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span><span class="w"> </span><span class="c1">// Print i and s to the screen with their memory interpreted as an integer and size_t</span>
 </pre></div>
 <p>The first argument is the format string and it can be followed by any number of arguments. Notice the newline character <strong>'\n'</strong> in the format string to make a new line at the end of the printing. The percent characters <strong>\%</strong> are placeholders for variables in the arguments and describe how the arguments should be interpreted and displayed. The <strong>std::</strong> means that we are using the <strong>printf</strong> function from the <strong>std</strong> namespace, this extra qualifier isn't necessary when we work with C code.</p>
-<p>In C++ there is also the <strong>cout</strong> functionality to send output to the standard output stream. Just ensure you have included <strong>\&lt;iostream&gt;</strong> in the header region.</p>
-<div class="highlight"><pre><span></span><span class="c1">// Print x and a space, then y and a new line</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"></span>
+<h3 id="C++-style-printing">C++-style printing<a class="anchor-link" href="#C++-style-printing">&#182;</a></h3><p>In C++ there is a function called <strong>std::cout</strong> that can be used to print variables. In the header we need to include <strong><iostream></iostream></strong></p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 </pre></div>
-<p>Sometimes output is cached, if you need to flush this cache then use <strong>std::endl</strong>, like this</p>
-<div class="highlight"><pre><span></span><span class="c1">// End a line and flush output</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<p>We use the insertion operator <code>&lt;&lt;</code> to send variables to <strong>std::cout</strong>. Note that one does not have to choose a format method like we need to do with <strong>prinf</strong>. We can also use the insertion operator multiple times to send information to <strong>std::cout</strong>.</p>
+<div class="highlight"><pre><span></span><span class="c1">// Print the C-string f and a new line</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">// Print a float followed by an end of line</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 </pre></div>
+<p>The <strong>std::endl</strong> function can be used to append an end of line character to the output as shown above, however the end of line character itself "\n" is usually faster.
+```</p>
 
 </div>
 </div>
@@ -15465,7 +15469,7 @@ $$S_{i+1} = S_{i} N_{i}.$$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Strings">Strings<a class="anchor-link" href="#Strings">&#182;</a></h2><p>C++ has a rich set of commands to handle strings. In C a string is just an array of characters with a null character <strong>'\0'</strong> at the end to signify the end of the string. The null character is required by many string handling functions, otherwise they can run off the end of the array and cause a memory access violation. We can declare a string as follows:</p>
+<h2 id="Strings">Strings<a class="anchor-link" href="#Strings">&#182;</a></h2><h3 id="C-style-strings">C-style strings<a class="anchor-link" href="#C-style-strings">&#182;</a></h3><p>In C a string is just an array of characters with a null character <strong>'\0'</strong> at the end to signify the end of the string. The null character is required by many string handling functions, otherwise they can run off the end of the array and cause a memory access violation. We can declare a C-string as follows:</p>
 <div class="highlight"><pre><span></span><span class="c1">// Declare a C string</span>
 <span class="kt">char</span><span class="w"> </span><span class="n">f</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;first string&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// String whose contents may be modified</span>
 <span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">p</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;second string&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// String whose contents may not be modified</span>
@@ -15487,18 +15491,17 @@ $$S_{i+1} = S_{i} N_{i}.$$
 <span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%e</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 <p>When strings are declared in this way there is no need to explicitly assign the null character to the last element as the compiler does it for you. However inserting a null character may become necessary if you have an array of characters and turn that array into a string.</p>
-<h3 id="Printing-variables-in-C++">Printing variables in C++<a class="anchor-link" href="#Printing-variables-in-C++">&#182;</a></h3><p>In C++ you can print variables to standard output using the <strong>std::cout</strong> function if you include <strong><iostream></iostream></strong> in the header.</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<h3 id="C++-style-strings">C++ style strings<a class="anchor-link" href="#C++-style-strings">&#182;</a></h3><p>C++ introduces a new object for string handling. Firstly we need to have this in the header</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 </pre></div>
-<p>Then you can use <strong>std::cout</strong> in the following way to print variables. We use the insertion operator <code>&lt;&lt;</code> to send variables to <strong>std::cout</strong>. Note that one does not have to choose a format method. We can use the insertion operator multiple times on one line.</p>
-<div class="highlight"><pre><span></span><span class="c1">// Print the C-string f and a new line</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"></span>
+<p>Then we can declare objects of type <strong>string</strong></p>
+<div class="highlight"><pre><span></span><span class="c1">// Declare a C++ string</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hey there!&quot;</span><span class="p">;</span><span class="w"></span>
 
-<span class="c1">// Print a float followed by an end of line</span>
-<span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"></span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="c1">// Print the string with std::cout</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">words</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"></span>
 </pre></div>
-<p>The <strong>std::endl</strong> function can be used to append an end of line character to the output as shown above, however the end of line character itself "\n" is usually faster.</p>
 
 </div>
 </div>
