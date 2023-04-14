@@ -15609,8 +15609,8 @@ $$S_{i+1} = S_{i} N_{i}.$$
 <div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">std::fseek</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">relative_offset</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="p">);</span><span class="w"></span>
 <span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">std::ftell</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="p">);</span><span class="w"></span>
 </pre></div>
-<p>The value <strong>relative_offset</strong> is the offset to seek to relative to <strong>position</strong>, and position is one of <strong>SEEK_SET</strong> for the beginning of the file; <strong>SEEK_CUR</strong> for the current position; and <strong>SEEK_END</strong> for the end location. The function <strong>std::ftell</strong> just tells the absolute location of the current position in the file.</p>
-<p>For example, in the code below we seek to the start and end locations in the file and report on their location.</p>
+<p>The value <strong>relative_offset</strong> is the offset to seek to relative to <strong>position</strong>, and position is one of <strong>SEEK_SET</strong> for the beginning of the file; <strong>SEEK_CUR</strong> for the current position; and <strong>SEEK_END</strong> for the end location. The function <strong>std::ftell</strong> just tells the absolute location (in bytes) of the current position in the file.</p>
+<p>For example, in the code below we seek to the start and end locations in the file and use that to report how big th file is.</p>
 <div class="highlight"><pre><span></span><span class="c1">// Open the file</span>
 <span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;file.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rb&quot;</span><span class="p">);</span><span class="w"></span>
 
@@ -15776,20 +15776,20 @@ notice that argument 0 is the name of the program being called. </li>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Exercise-2:-Debugging-with-GDB-and-printf">Exercise 2: Debugging with <strong>GDB</strong> and <strong>printf</strong><a class="anchor-link" href="#Exercise-2:-Debugging-with-GDB-and-printf">&#182;</a></h2><p>The program <a href="image_creator.cpp">image_creator.cpp</a> contains most of the concepts in C++ that are taught in this lesson. Aside from a few lines of example code the main function of this program is to write out a binary file for an image of 32-bit floats of size (NROWS_C=4, NCOLS_C=6). Every pixel contains the dimension 0 coordinate multiplied by the dimension 1 coordinate. The program has a couple of memory errors, one of them is causing the program to crash. Your job is to find these errors using <strong>std::printf</strong> and the GNU debugger GDB.</p>
+<h2 id="Exercise-2:-Debugging-with-GDB-and-printf">Exercise 2: Debugging with <strong>GDB</strong> and <strong>printf</strong><a class="anchor-link" href="#Exercise-2:-Debugging-with-GDB-and-printf">&#182;</a></h2><p>The program <a href="image_creator.cpp">image_creator.cpp</a> contains most of the concepts in C++ that are taught in this lesson. Aside from a few lines of example code, the main function of this program is to write out a binary file for an image of 32-bit floats of size (NROWS_C=4, NCOLS_C=6). Every pixel contains the dimension 0 coordinate multiplied by the dimension 1 coordinate. The program has a couple of memory errors, one of them is causing the program to crash. Your job is to find these errors using <strong>std::printf</strong> and the GNU debugger GDB.</p>
 <h3 id="Steps">Steps<a class="anchor-link" href="#Steps">&#182;</a></h3><ol>
 <li>Open the file using this <a href="image_creator.cpp">link</a> and have a look to see what the file is doing.</li>
 <li>Open a terminal and use <strong>cd</strong> to navigate to the <strong>src/L0_Survival_C++</strong> directory.</li>
-<li>Type <strong>make clean</strong> and then <strong>make</strong> (on Linux) to make the program <strong>image_creator.exe</strong>. Notice that we changed the makefile to compile with flags "-g -O0". This enables debugging symbols and turns off all optimisations that might hide code. We could also have compiled the source file directly by typing <br/><br/><div class="highlight"><pre><span></span>g++ -g -O0 image_creator.cpp -o image_creator.exe
+<li>Type <strong>make clean</strong> and then <strong>make</strong> (on Linux) to make the program <strong>image_creator.exe</strong>. Notice that we changed the makefile to compile with flags "-g -O0". This enables debugging symbols and turns off all optimisations that might hide code. We could also have compiled the source file directly by typing<div class="highlight"><pre><span></span>g++ -g -O0 image_creator.cpp -o image_creator.exe
 </pre></div>
-<br/></li>
+</li>
 <li>Run the program <code>./image_creator.exe</code> to verify that it crashes.</li>
 <li>Run the program with GDB using the command<div class="highlight"><pre><span></span>gdb ./image_creator.exe
 </pre></div>
 </li>
 <li>Now within gdb type <code>run</code>
 to start the program. It will execute until it crashes</li>
-<li>We suspect that the program is running off the end of the array. The coordinates <strong>i0</strong> and <strong>i1</strong> should be in the range (0,0)-(3,5). Set a conditional breakpoint using the command <code>break image_creator.cpp:66 if ((i0&gt;4)&amp;&amp;(i1&gt;6))</code>. Then the program will stop if <strong>i0</strong> and <strong>i1</strong> misbehave.</li>
+<li>We suspect that the program is running off the end of the array. The coordinates <strong>i0</strong> and <strong>i1</strong> should be in the range (0,0)-(3,5). Set a conditional breakpoint using the command <code>break image_creator.cpp:66 if ((i0&gt;3)&amp;&amp;(i1&gt;5))</code>. Then the program will stop if <strong>i0</strong> and <strong>i1</strong> misbehave.</li>
 <li>Use the command <code>run</code> to execute again until it hits the break point. You can run the command <code>n</code> to step through the lines of code, and the command <code>print</code> to print variables.</li>
 <li>Type <code>print i0</code> to check the contents of <strong>i0</strong>. Does this value make sense?</li>
 <li>Type <code>del</code> to clear all breakpoints.</li>
@@ -15884,10 +15884,10 @@ malloc(): corrupted top size
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>make clean<span class="p">;</span> make image_creator_answer.exe<span class="p">;</span> ./image_creator_answer.exe
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>make image_creator_answer.exe<span class="p">;</span> ./image_creator_answer.exe
 </pre></div>
 
      </div>
@@ -15909,9 +15909,7 @@ malloc(): corrupted top size
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>rm -r *.exe
-hipcc -g -std=c++11 -O0 -I/usr/include -I../include -L/usr/lib/x86_64-linux-gnu image_creator_answer.cpp\
-	-o image_creator_answer.exe 
+<pre>make: &#39;image_creator_answer.exe&#39; is up to date.
 b interpreted as an integer: 116
 b interpreted as a character: t
 abcd
