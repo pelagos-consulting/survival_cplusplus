@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
     // The constants NROWS_C and NCOLS_C were defined in the file mat_size.hpp
     size_t N0_C=NROWS_C;
     size_t N1_C=NCOLS_C;
-    
+
     // Make up strides for multi-dimensional indexing, use row-major ordering
     int s0 = N1_C;
     int s1 = 1;
@@ -72,7 +72,8 @@ int main(int argc, char** argv) {
         }
     }
 
-    // Print the array
+    // Pretty-print the array using a function called m_show_matrix
+    std::cout << "The computed solution (arr) is\n";    
     m_show_matrix(arr, (size_t)N0_C, (size_t)N1_C);
 
     // Write the array to disk

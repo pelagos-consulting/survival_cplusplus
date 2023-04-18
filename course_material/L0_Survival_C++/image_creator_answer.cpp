@@ -49,7 +49,6 @@ int main(int argc, char** argv) {
 
     //// End example code ////
     
-    
     //// Begin Exercise 1 ////
     
     // The constants NROWS_C and NCOLS_C were defined in the file mat_size.hpp
@@ -73,7 +72,8 @@ int main(int argc, char** argv) {
         }
     }
 
-    // Print the array
+    // Pretty-print the array
+    // using a function called m_show_matrix
     std::cout << "The computed solution (arr) is\n";    
     m_show_matrix(arr, (size_t)N0_C, (size_t)N1_C);
 
