@@ -14559,12 +14559,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14584,6 +14584,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </pre></div>
 <p>Alternatively, you can use <strong>wget</strong> to download the course material on the command line.</p>
 <div class="highlight"><pre><span></span>wget https://github.com/pelagos-consulting/survival_cplusplus/archive/refs/heads/main.zip
+unzip -DD main.zip
+<span class="nb">cd</span> survival_cplusplus-main/course_material/L0_Survival_C++
 </pre></div>
 <h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>In order to understand software written for frameworks like HIP, CUDA, and OpenCL, we need to have a rudimentary grasp of the C++ language. While C++ is the language of choice for many real-world scientific applications, it can be more complex to understand than plain C, and that extra complexity may get in the way of the science. This course is designed to impart just enough "Survival C/C++" in order to be productive with scientific computing. It also aims to deliver fundamental information such as how numbers are represented in binary. Topics to be covered are:</p>
 <ul>
