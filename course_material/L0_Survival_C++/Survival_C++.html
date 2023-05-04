@@ -15761,10 +15761,10 @@ $$S_{i+1} = S_{i} N_{i}.$$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Steps">Steps<a class="anchor-link" href="#Steps">&#182;</a></h3><ol>
+<h3 id="Steps">Steps<a class="anchor-link" href="#Steps">&#182;</a></h3><ul>
 <li>Copy the above program to a file called <strong>repeater.cpp</strong> in the same directory as the course material. You can use any text editor that you have available.</li>
-<li>Compile the code with your compiler. In this instance we use a C++ compiler called <strong>g++</strong> to compile the code.
-<pre><code>g++ repeater.cpp -o repeater.exe</code></pre>
+<li>Compile the code with your compiler. In this instance we use a C++ compiler called <strong>g++</strong> to compile the code.<div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span><span class="w"> </span><span class="n">repeater</span><span class="p">.</span><span class="n">cpp</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="n">repeater</span><span class="p">.</span><span class="n">exe</span><span class="w"></span>
+</pre></div>
 </li>
 <li>Run the code,<div class="highlight"><pre><span></span>./repeater.exe
 </pre></div>
@@ -15773,7 +15773,7 @@ notice that argument 0 is the name of the program being called. </li>
 <li>Replace all calls to <strong>std::printf</strong> with <strong>std::cout</strong> </li>
 <li>Compile the code again</li>
 <li>Check to see if the code behaves as before.</li>
-</ol>
+</ul>
 
 </div>
 </div>
@@ -15786,7 +15786,7 @@ notice that argument 0 is the name of the program being called. </li>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Exercise-2:-Debugging-with-GDB-and-printf">Exercise 2: Debugging with <strong>GDB</strong> and <strong>printf</strong><a class="anchor-link" href="#Exercise-2:-Debugging-with-GDB-and-printf">&#182;</a></h2><p>The program <a href="image_creator.cpp">image_creator.cpp</a> draws on many of the concepts in C++ that are taught in this lesson. Aside from a few lines of example code, the main function of this program is to write out a binary file for an image of 32-bit floats of size (NROWS_C=4, NCOLS_C=6). Every pixel contains the dimension 0 coordinate multiplied by the dimension 1 coordinate. The program has a couple of memory errors, and one of them is causing the program to crash. Your job is to find these errors using <strong>std::printf</strong> and the GNU debugger GDB.</p>
-<h3 id="Steps">Steps<a class="anchor-link" href="#Steps">&#182;</a></h3><ol>
+<h3 id="Steps">Steps<a class="anchor-link" href="#Steps">&#182;</a></h3><ul>
 <li>Open <a href="image_creator.cpp">image_creator.cpp</a> and have a look to see what the file is doing.</li>
 <li>Open a terminal and use <strong>cd</strong> to navigate to the <strong>src/L0_Survival_C++</strong> directory.</li>
 <li>Type <strong>make clean</strong> and then <strong>make</strong> (on Linux) to make the program <strong>image_creator.exe</strong>. Notice that we changed the makefile to compile with flags "-g -O0". This enables debugging symbols and turns off all optimisations that might hide code. We could also have compiled the source file directly by typing<div class="highlight"><pre><span></span>g++ -g -O0 image_creator.cpp -o image_creator.exe
@@ -15808,7 +15808,7 @@ to start the program. It will execute until it crashes</li>
 <li>Type <code>run</code> to run the code again. Does the error still occur?</li>
 <li>Within <strong>gdb</strong> type <code>del</code> to remove all breakpoints and then type <code>quit</code> to quit the program.</li>
 <li>Run program without gdb to see if the program runs successfully.</li>
-</ol>
+</ul>
 
 </div>
 </div>
