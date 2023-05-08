@@ -15530,7 +15530,8 @@ $$2^{7} + 2^{4} + 2^{3} = 152, $$$$128 + 16 + 8 = 152. $$
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Steps">Steps<a class="anchor-link" href="#Steps">&#182;</a></h4><ul>
-<li>Copy the above program to a file called <strong>repeater.cpp</strong> in the same directory as the course material. You can use any text editor that you have available. Here we use the Nano editor.<div class="highlight"><pre><span></span>nano repeater.cpp
+<li>Copy the above program to a file called <strong>repeater.cpp</strong> in the same directory as the course material. You can use any text editor that you have available. Here we use the Nano editor.<div class="highlight"><pre><span></span><span class="nb">cd</span> course_material/L0_Survival_C++
+nano repeater.cpp
 </pre></div>
 </li>
 <li>Copy from the program above to the open file in the terminal window. Then write out the file with <code>cntrl+o</code> and exit. If you get stuck then there is a backup file you can use.<div class="highlight"><pre><span></span>cp repeater_answers.cpp repeater.cpp
@@ -15835,7 +15836,7 @@ Maximum error (infinity norm) is: 0
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="File-IO">File IO<a class="anchor-link" href="#File-IO">&#182;</a></h2><p>There are much better ways to write binary data to files, using self-descriptive and cross-platform formats like <a href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a>. Sometimes though you might be stuck and just need a quick way to get your data in and out of your program for <strong>testing and verification purposes</strong>. Within the C subset of the C++ language there is a simple way to read and write binary data, using the endian representation that your architecture supports. You just have to be aware that this data may not be portable to other architectures without accounting for differences in Endianess, so <strong>please</strong> don't use these methods for actual production code.</p>
+<h2 id="File-IO">File IO<a class="anchor-link" href="#File-IO">&#182;</a></h2><p>There are much better ways to write binary data to files, using self-descriptive and cross-platform formats like <a href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a>. Sometimes though you might be stuck and just need a quick way to get your data in and out of your program for <strong>testing and verification purposes</strong>. Within the C subset of the C++ language there is a simple way to read and write binary data, using the endian representation that your architecture supports. You just have to be aware that this data may not be portable to other architectures without accounting for differences in endianess, so its not advisable to use raw binary dumps as standard practice for actual production code.</p>
 <h3 id="Opening-and-closing-files">Opening and closing files<a class="anchor-link" href="#Opening-and-closing-files">&#182;</a></h3><p>The <strong>std::fopen</strong> function and <strong>std::fclose</strong> pair of functions open and close files. The <strong>std::fopen</strong> function takes the form</p>
 <div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">fopen</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">mode</span><span class="p">)</span><span class="w"></span>
 </pre></div>
@@ -15907,7 +15908,7 @@ Maximum error (infinity norm) is: 0
 </tr>
 </tbody>
 </table>
-<p>For example with this code we open a file for writing, you will need to include <strong>\&lt;cstdio&gt;</strong> in the header of the program though.</p>
+<p>For example with this code we open a file for writing, you will need to include <strong>\&lt;cstdio&gt;</strong> in the header of the program.</p>
 <div class="highlight"><pre><span></span><span class="c1">// Open a file for writing in binary mode</span>
 <span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;myfile.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wb&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
@@ -15927,7 +15928,7 @@ Maximum error (infinity norm) is: 0
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Positioning-within-a-file-using-std::fseek-and-std::ftell">Positioning within a file using <strong>std::fseek</strong> and <strong>std::ftell</strong><a class="anchor-link" href="#Positioning-within-a-file-using-std::fseek-and-std::ftell">&#182;</a></h3><p>Every open file has a "current position" associated with it. This hearkens back to the days when files were read and written to tape. We can "rewind" or "fast-forward" this position using the <strong>std::fseek</strong> function and report on the current position using <strong>std::ftell</strong>. The signature for both functions is as follows:</p>
+<h3 id="Positioning-within-a-file-using-std::fseek-and-std::ftell">Positioning within a file using <strong>std::fseek</strong> and <strong>std::ftell</strong><a class="anchor-link" href="#Positioning-within-a-file-using-std::fseek-and-std::ftell">&#182;</a></h3><p>Every open file has the notion of a "current position". This hearkens back to the days when files were read from and written to tape. We can "rewind" or "fast-forward" this position using the <strong>std::fseek</strong> function and report on the current position using <strong>std::ftell</strong>. The signature for both functions is as follows:</p>
 <div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">std::fseek</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">relative_offset</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="p">);</span><span class="w"></span>
 <span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">std::ftell</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="p">);</span><span class="w"></span>
 </pre></div>
@@ -16026,97 +16027,49 @@ Maximum error (infinity norm) is: 0
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Exercise-3:-Debug-a-program-with-GDB-and-printf">Exercise 3: Debug a program with <strong>GDB</strong> and <strong>printf</strong><a class="anchor-link" href="#Exercise-3:-Debug-a-program-with-GDB-and-printf">&#182;</a></h2><p>The program <a href="image_creator.cpp">image_creator.cpp</a> draws on many of the concepts in C++ that are taught in this lesson. Aside from a few lines of example code, the main function of this program is to write out a binary file for an image of 32-bit floats of size (NROWS_C=4, NCOLS_C=6). Every pixel contains the dimension 0 coordinate multiplied by the dimension 1 coordinate. The program has a couple of memory errors, and one of them is causing the program to crash. Your job is to find these errors using <strong>std::printf</strong> and the GNU debugger GDB.</p>
-<h3 id="Steps">Steps<a class="anchor-link" href="#Steps">&#182;</a></h3><ol>
+<h2 id="Exercise-3:-Debug-a-program-with-GDB-and-printf">Exercise 3: Debug a program with <strong>GDB</strong> and <strong>printf</strong><a class="anchor-link" href="#Exercise-3:-Debug-a-program-with-GDB-and-printf">&#182;</a></h2><p>The program <a href="image_creator.cpp">image_creator.cpp</a> draws on many of the concepts in C++ that are taught in this lesson. Aside from a few lines of example code, the main function of this program is to write out a binary file for an image of 32-bit floats of size (NROWS_C=4, NCOLS_C=6). Every pixel contains the dimension 0 coordinate multiplied by the dimension 1 coordinate. The program is buggy however, and bugs are causing the program to crash! Your job is to find these errors using <strong>std::printf</strong> and the GNU debugger GDB.</p>
+<h3 id="Steps">Steps<a class="anchor-link" href="#Steps">&#182;</a></h3><ul>
 <li>Open <a href="image_creator.cpp">image_creator.cpp</a> and have a look to see what the file is doing.</li>
-<li>Open a terminal and use <strong>cd</strong> to navigate to the <strong>src/L0_Survival_C++</strong> directory.</li>
-<li>Type <strong>make clean</strong> and then <strong>make</strong> (on Linux) to make the program <strong>image_creator.exe</strong>. Notice that we changed the makefile to compile with flags "-g -O0". This enables debugging symbols and turns off all optimisations that might hide code. We could also have compiled the source file directly by typing <div class="highlight"><pre><span></span>g++ -g -O0 image_creator.cpp -o image_creator.exe
+<li>Open a terminal and use <strong>cd</strong> to navigate to the <strong>L0_Survival_C++</strong> directory.<div class="highlight"><pre><span></span><span class="nb">cd</span> course_material/L0_Survival_C++
+</pre></div>
+</li>
+<li>Type <strong>make clean</strong> and then <strong>make</strong> to make the program <strong>image_creator.exe</strong>. Notice that we changed the makefile to compile with flags "-g -O0". These flags enable extra support for debugging and turns off all optimisations that might hide code. We could also have compiled the source file directly by typing: <div class="highlight"><pre><span></span>g++ -g -O0 image_creator.cpp -o image_creator.exe
 </pre></div>
 </li>
 <li>Run the program <code>./image_creator.exe</code> to verify that it crashes.</li>
-<li>Run the program with GDB using the command<div class="highlight"><pre><span></span>gdb ./image_creator.exe
+<li>Run the program with the GNU DeBugger (GDB) using the command<div class="highlight"><pre><span></span>gdb ./image_creator.exe
 </pre></div>
 </li>
 <li>Now within gdb type <code>run</code>
 to start the program. It will execute until it crashes</li>
-<li>We suspect that the program is running off the end of the array. The coordinates <strong>i0</strong> and <strong>i1</strong> should be in the range (0,0)-(3,5). Set a conditional breakpoint using the command <code>break image_creator.cpp:66 if ((i0&gt;3)&amp;&amp;(i1&gt;5))</code>. Then the program will stop if <strong>i0</strong> and <strong>i1</strong> misbehave.</li>
-<li>Use the command <code>run</code> to execute again until it hits the break point. You can run the command <code>n</code> to step through the lines of code, and the command <code>print</code> to print variables.</li>
+<li>Set a breakpoint with the command<div class="highlight"><pre><span></span>b image_creator.cpp:57
+</pre></div>
+</li>
+<li>Execute <code>run</code> again, it will run until it hits the breakpoint.</li>
+<li>Step through a few lines of code, press <code>n</code> and then <code>enter</code> a few times</li>
+<li>Print the variables <code>N0_C</code> and <code>N1_C</code> with this command<div class="highlight"><pre><span></span>print N0_C
+print N1_C
+</pre></div>
+</li>
+<li>We suspect that the program is running off the end of the array. The coordinates <strong>i0</strong> and <strong>i1</strong> should be in the range (0,0)-(3,5). Set a conditional breakpoint using the command <div class="highlight"><pre><span></span><span class="nb">break</span> image_creator.cpp:66 <span class="k">if</span> <span class="o">((</span>i0&gt;3<span class="o">)&amp;&amp;(</span>i1&gt;5<span class="o">))</span>
+</pre></div>
+The program will stop if <strong>i0</strong> and <strong>i1</strong> misbehave.</li>
+<li>Use the command <code>continue</code> to continue executing. It might hit the breakpoint we just made?!?</li>
 <li>Type <code>print i0</code> to check the contents of <strong>i0</strong>. Does this value make sense?</li>
 <li>Type <code>del</code> to clear all breakpoints.</li>
-<li>Modify <strong>image_creator.cpp</strong> to use a <strong>std::printf</strong> (or a <strong>std::cout</strong>) statement to print the value of <strong>i0</strong> for each iteration of the outermost loop (line 66). After you change the source you can type <code>make</code> from within the GDB window to make the program and type <code>run</code> to run the code again. Why do you think <strong>i0</strong> is exceeding the size of the array allong dimension 0?</li>
+<li>In a separate terminal window login and modify <strong>image_creator.cpp</strong> to use a <strong>std::printf</strong> (or a <strong>std::cout</strong>) statement to print the value of <strong>i0</strong> for each iteration of the outermost loop (line 67). After you change the source you can type <code>make</code> from within the GDB window to make the program and type <code>run</code> to run the code again. Why do you think <strong>i0</strong> is exceeding the size of the array allong dimension 0?</li>
 <li>Have a look at how <strong>i0</strong> is being generated in the outermost loop. Hopefully the bug will become known at this point. Make the required fix to <strong>image_creator.cpp</strong>.</li>
 <li>You can run the <strong>make</strong> command within GDB to re-build the program after changes are made. </li>
 <li>Type <code>run</code> to run the code again. Does the error still occur?</li>
 <li>Within <strong>gdb</strong> type <code>del</code> to remove all breakpoints and then type <code>quit</code> to quit the program.</li>
-<li>Run program without gdb to see if the program runs successfully.</li>
-</ol>
-
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Run-the-exercise">Run the exercise<a class="anchor-link" href="#Run-the-exercise">&#182;</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>make image_creator.exe<span class="p">;</span> ./image_creator.exe
+<li>Run program without gdb to see if the program runs successfully.<div class="highlight"><pre><span></span>./image_creator.exe
 </pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>g++ -g -std=c++11 -O0 -I/usr/include -I../include -L/usr/lib/x86_64-linux-gnu image_creator.cpp\
-	-o image_creator.exe 
-b interpreted as an integer: 116
-b interpreted as a character: t
-abcd
-float representation, x = 5.000000 y = 6.000000
-The computed solution (arr) is
-------
-|  0.00e+00  0.00e+00  0.00e+00  0.00e+00  0.00e+00  0.00e+00 |
-|  0.00e+00  1.00e+00  2.00e+00  3.00e+00  4.00e+00  5.00e+00 |
-|  0.00e+00  2.00e+00  4.00e+00  6.00e+00  8.00e+00  1.00e+01 |
-|  0.00e+00  3.00e+00  6.00e+00  9.00e+00  1.20e+01  1.50e+01 |
-------
-malloc(): corrupted top size
-</pre>
-</div>
-</div>
+</li>
+</ul>
 
 </div>
-
 </div>
-
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -16124,7 +16077,7 @@ malloc(): corrupted top size
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="The-solution-if-you-get-stuck">The solution if you get stuck<a class="anchor-link" href="#The-solution-if-you-get-stuck">&#182;</a></h3><p>You can always peek at the solution <a href="image_creator_answer.cpp">image_creator_answer</a>. The bugs are fixed, and it can be compiled with either <strong>make</strong> or</p>
+<h3 id="The-solution-if-you-get-stuck">The solution if you get stuck<a class="anchor-link" href="#The-solution-if-you-get-stuck">&#182;</a></h3><p>You can always peek at the solution <a href="image_creator_answer.cpp">image_creator_answer.cpp</a>. The bugs are fixed, and it can be compiled with either <strong>make</strong> or</p>
 <div class="highlight"><pre><span></span>g++ -g -O0 -I../include image_creator_answer.cpp -o image_creator_answer.exe
 </pre></div>
 
@@ -16136,7 +16089,7 @@ malloc(): corrupted top size
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>make image_creator_answer.exe<span class="p">;</span> ./image_creator_answer.exe
@@ -16161,8 +16114,7 @@ malloc(): corrupted top size
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>g++ -g -std=c++11 -O0 -I/usr/include -I../include -L/usr/lib/x86_64-linux-gnu image_creator_answer.cpp\
-	-o image_creator_answer.exe 
+<pre>make: &#39;image_creator_answer.exe&#39; is up to date.
 b interpreted as an integer: 116
 b interpreted as a character: t
 abcd
@@ -16190,11 +16142,27 @@ The computed solution (arr) is
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <address>
-Written by Dr. Toby Potter of <a href="https://www.pelagos-consulting.com">Pelagos Consulting and Education</a> for the Pawsey Supercomputing Centre
+Written by Dr. Toby Potter of <a href="https://www.pelagos-consulting.com">Pelagos Consulting and Education</a> for the Pawsey Supercomputing Centre.
 </address>
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div>
 </body>
 

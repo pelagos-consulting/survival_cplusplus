@@ -51,6 +51,8 @@ int main(int argc, char** argv) {
     
     //// Begin Exercise 1 ////
     
+    // The error is somewhere in the code below
+    
     // The constants NROWS_C and NCOLS_C were defined in the file mat_size.hpp
     size_t N0_C=NROWS_C;
     size_t N1_C=NCOLS_C;

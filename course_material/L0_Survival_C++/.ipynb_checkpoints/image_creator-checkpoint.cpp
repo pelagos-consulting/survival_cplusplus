@@ -51,6 +51,8 @@ int main(int argc, char** argv) {
     
     //// Begin Exercise 1 ////
     
+    // The error is somewhere in the code below
+    
     // The constants NROWS_C and NCOLS_C were defined in the file mat_size.hpp
     size_t N0_C=NROWS_C;
     size_t N1_C=NCOLS_C;
@@ -72,7 +74,8 @@ int main(int argc, char** argv) {
         }
     }
 
-    // Pretty-print the array using a function called m_show_matrix
+    // Pretty-print the array
+    // using a function called m_show_matrix
     std::cout << "The computed solution (arr) is\n";    
     m_show_matrix(arr, (size_t)N0_C, (size_t)N1_C);
 
