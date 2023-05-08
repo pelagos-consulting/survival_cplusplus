@@ -14579,7 +14579,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Survival-C++-and-how-to-use-it-to-work-with-data">Survival C++ and how to use it to work with data<a class="anchor-link" href="#Survival-C++-and-how-to-use-it-to-work-with-data">&#182;</a></h1><h2 id="Course-material">Course material<a class="anchor-link" href="#Course-material">&#182;</a></h2><p>The course material (including this notebook) can be found <a href="https://github.com/pelagos-consulting/survival_cplusplus">here on Github</a>. Clone the repository with this command.</p>
+<h1 id="Survival-C/C++-and-how-to-use-it-for-basic-tasks">Survival C/C++ and how to use it for basic tasks<a class="anchor-link" href="#Survival-C/C++-and-how-to-use-it-for-basic-tasks">&#182;</a></h1><h2 id="Course-material">Course material<a class="anchor-link" href="#Course-material">&#182;</a></h2><p>The course material (including this notebook) can be found <a href="https://github.com/pelagos-consulting/survival_cplusplus">here on Github</a>. Clone the repository with this command.</p>
 <div class="highlight"><pre><span></span>git clone https://github.com/pelagos-consulting/survival_cplusplus.git
 </pre></div>
 <p>Alternatively, you can use <strong>wget</strong> to download the course material on the command line.</p>
@@ -15443,9 +15443,9 @@ notice that argument 0 is the name of the program being called. </li>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Pointer-arithmetic">Pointer arithmetic<a class="anchor-link" href="#Pointer-arithmetic">&#182;</a></h3><p>Since a pointer is an address, we can add or subtract integers to a pointer to access elements of the same type at an offset to the pointer address. The offset in memory is units of the data type pointed to by the pointer. Thus the following statements are equivalent.</p>
-<p>```C++
-std::printf("%f\n", a[2]); // Using indexing operator
-std::printf("%f\n", *(a+2)); // Using pointer arithmetic</p>
+<div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span><span class="w"> </span><span class="c1">// Using indexing operator</span>
+<span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">2</span><span class="p">));</span><span class="w"> </span><span class="c1">// Using pointer arithmetic</span>
+</pre></div>
 
 </div>
 </div>
