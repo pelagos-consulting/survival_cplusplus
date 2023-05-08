@@ -39,6 +39,12 @@ void mat_mult(
 
             //// Exercise, fix these two wrong lines of code ////
             
+            //// Hint: Ask these questions
+            //// What is the starting position for A?
+            //// What is the stride along dimension 1 of A?
+            //// What is the starting position for B?
+            //// What is the stride along dimension 0 of B?
+            
             size_t offset_A = 0;
             size_t offset_B = 0;
             
