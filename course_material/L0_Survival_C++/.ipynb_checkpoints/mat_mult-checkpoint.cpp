@@ -45,8 +45,8 @@ void mat_mult(
             //// What is the starting position for B?
             //// What is the stride along dimension 0 of B?
             
-            size_t offset_A = i0*N1_A+n;
-            size_t offset_B = i1+n*N1_C;
+            size_t offset_A = 0;
+            size_t offset_B = 0;
             
             //// End exercise ////
 
