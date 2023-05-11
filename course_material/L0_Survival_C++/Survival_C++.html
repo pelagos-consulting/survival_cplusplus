@@ -15928,7 +15928,7 @@ Maximum error (infinity norm) is: 0
 </tr>
 </tbody>
 </table>
-<p>Adding a plus sign <strong>"+"</strong> to the mode allows updates to happen to the file as well. It is kind of like a read/write modifier.</p>
+<p>Adding a plus sign <strong>"+"</strong> to the mode allows updates to happen to the file as well. It is kind of like a read/write modifier that allows information to flow both ways, to and from the file.</p>
 <table>
 <thead><tr>
 <th style="text-align:left">Mode</th>
@@ -15962,7 +15962,8 @@ Maximum error (infinity norm) is: 0
 </tr>
 </tbody>
 </table>
-<p>For example with this code we open a file for writing, you will need to include <strong>\&lt;cstdio&gt;</strong> in the header of the program.</p>
+<p>This <a href="https://cplusplus.com/reference/cstdio/fopen/">site</a> explains in more detail how the <code>+</code> sign changes behaviour with the file.</p>
+<p>In the code below we open a file for writing, you will need to include <strong>\&lt;cstdio&gt;</strong> in the header of the program.</p>
 <div class="highlight"><pre><span></span><span class="c1">// Open a file for writing in binary mode</span>
 <span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;myfile.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wb&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
