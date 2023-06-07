@@ -15726,7 +15726,7 @@ Notice that argument 0 is the name of the program being called. Add further argu
 <p>If you look carefully at the folded representations you can see that a step of 1 along any dimension corresponds to a <strong>stride</strong> of a fixed number of elements in the 1D array. For example, in the arrays above a step of 1 along dimension 1 (left to right) requires a <strong>stride of 2</strong> elements in row-major ordering and <strong>3</strong> elements in column-major ordering. The stride for each dimension is encapsulated in the strides vector <strong>S</strong>. In this example <code>S = (8,2,1)</code> for row-major and <code>S = (1,3,12)</code> for column-major representations. For any (zero-based) coordinate vector <strong>C</strong> the position <strong>P</strong> in the underlying memory allocation is just the dot product between the coordinate vector <strong>C</strong> and the strides vector <strong>S</strong>.</p>
 $$P=C \cdot S$$<p>For example, take the coordinates <code>C=(1,3,1)</code>. Under row major ordering with <code>S=(8,2,1)</code> the position is</p>
 $$P_{\mathrm{row-major}} = C \cdot S = (\textbf{1} \times 8) + (\textbf{3} \times 2) + (\textbf{1} \times 1) = 15.$$<p>Under column-major ordering with <code>S=(1,3,12)</code> the position is now</p>
-$$P_{\mathrm{col-major}} = C \cdot S = (\textbf{1} \times 1) + (\textbf{3} \times 3) + (\textbf{1} \times 12) = 22.$$<p>This way of thinking about multi-dimensional arrays is really powerful, because in order to step by one in any dimension all we need to do is know what the stride is for that dimension.</p>
+$$P_{\mathrm{col-major}} = C \cdot S = (\textbf{1} \times 1) + (\textbf{3} \times 3) + (\textbf{1} \times 12) = 22.$$<p>This way of thinking about multi-dimensional arrays is really powerful, because in order to step by one in any dimension all we need to know is the stride for that dimension.</p>
 <h4 id="Constructing-stride-vectors">Constructing stride vectors<a class="anchor-link" href="#Constructing-stride-vectors">&#182;</a></h4><p>Constructing the strides vector in each ordering scenario is straightforward. For <strong>row-major ordering</strong> we fill the stride vector from right to left and place a stride of 1 in the last dimension. In this case $S_{2}=1$. Then we obtain the previous element $S_{1}$ using the pattern.</p>
 $$S_{i-1} = S_{i} N_{i}.$$<p>Repeat the
 pattern until the stride vector is filled.</p>
@@ -15833,7 +15833,7 @@ $$S_{i+1} = S_{i} N_{i}.$$
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>make mat_mult.exe<span class="p">;</span> ./mat_mult.exe
@@ -15862,10 +15862,10 @@ $$S_{i+1} = S_{i} N_{i}.$$
 	-o mat_mult.exe 
 The computed array (C_h) is
 ------
-|  8.33e-01  4.66e-01  8.74e-01  6.26e-01  4.29e-01  3.82e-01 |
-|  2.38e-01  1.33e-01  2.72e-01  2.09e-01  1.45e-01  1.24e-01 |
-|  7.25e-01  2.97e-01  7.72e-01  8.87e-01  4.26e-01  3.45e-01 |
-|  4.68e-01  3.12e-01  7.38e-01  5.46e-01  4.66e-01  3.80e-01 |
+|  1.35e+00  1.35e+00  1.35e+00  1.35e+00  1.35e+00  1.35e+00 |
+|  1.35e+00  1.35e+00  1.35e+00  1.35e+00  1.35e+00  1.35e+00 |
+|  1.35e+00  1.35e+00  1.35e+00  1.35e+00  1.35e+00  1.35e+00 |
+|  1.35e+00  1.35e+00  1.35e+00  1.35e+00  1.35e+00  1.35e+00 |
 ------
 The solution array (C_answer_h) is 
 ------
@@ -15876,12 +15876,12 @@ The solution array (C_answer_h) is
 ------
 The residual (C_answer_h-C_h) is
 ------
-|  0.00e+00  0.00e+00  0.00e+00  0.00e+00  0.00e+00  0.00e+00 |
-|  0.00e+00  0.00e+00  0.00e+00  0.00e+00  0.00e+00  0.00e+00 |
-|  0.00e+00  0.00e+00  0.00e+00  0.00e+00  0.00e+00  0.00e+00 |
-|  0.00e+00  0.00e+00  0.00e+00  0.00e+00  0.00e+00  0.00e+00 |
+| -5.18e-01 -8.85e-01 -4.78e-01 -7.25e-01 -9.22e-01 -9.69e-01 |
+| -1.11e+00 -1.22e+00 -1.08e+00 -1.14e+00 -1.21e+00 -1.23e+00 |
+| -6.26e-01 -1.05e+00 -5.79e-01 -4.64e-01 -9.26e-01 -1.01e+00 |
+| -8.83e-01 -1.04e+00 -6.14e-01 -8.05e-01 -8.85e-01 -9.71e-01 |
 ------
-Maximum error (infinity norm) is: 0
+Maximum error (infinity norm) is: 1.2
 </pre>
 </div>
 </div>
@@ -15919,7 +15919,7 @@ Maximum error (infinity norm) is: 0
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>make mat_mult_answer.exe<span class="p">;</span> ./mat_mult_answer.exe
@@ -15944,7 +15944,8 @@ Maximum error (infinity norm) is: 0
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>make: &#39;mat_mult_answer.exe&#39; is up to date.
+<pre>g++ -g -std=c++11 -O0 -I/usr/include -I../include -L/usr/lib/x86_64-linux-gnu mat_mult_answer.cpp\
+	-o mat_mult_answer.exe 
 The computed array (C_h) is
 ------
 |  8.33e-01  4.66e-01  8.74e-01  6.26e-01  4.29e-01  3.82e-01 |
@@ -16079,7 +16080,7 @@ Maximum error (infinity norm) is: 0
 <div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">std::fseek</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">relative_offset</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="p">);</span><span class="w"></span>
 <span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">std::ftell</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="p">);</span><span class="w"></span>
 </pre></div>
-<p>The value <strong>relative_offset</strong> is the offset to seek to relative to <strong>position</strong>, and position is one of <strong>SEEK_SET</strong> for the beginning of the file; <strong>SEEK_CUR</strong> for the current position; and <strong>SEEK_END</strong> for the end location. The function <strong>std::ftell</strong> just tells the absolute location (in bytes) of the current position in the file.</p>
+<p>The value <strong>relative_offset</strong> is the offset to seek to relative to <strong>position</strong>, and position is one of <strong>SEEK_SET</strong> for the beginning of the file; <strong>SEEK_CUR</strong> for the current position; and <strong>SEEK_END</strong> for the end location. The function <strong>std::ftell</strong> just tells the absolute location (in bytes) of the current position in the file. The mode that you open the file in also has a effect on what happens to the file position after an <strong>fseek</strong>. For example if the file is opened in append mode then any subsequent writes to the file will move the file position to the end.</p>
 <p>For example, in the code below we seek to the start and end locations in the file and use that to report how big the file is.</p>
 <div class="highlight"><pre><span></span><span class="c1">// Open the file</span>
 <span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;file.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rb&quot;</span><span class="p">);</span><span class="w"></span>
