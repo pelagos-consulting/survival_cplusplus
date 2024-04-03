@@ -14,43 +14,7 @@ float square(int x, int y) {
 
 // Main program
 int main(int argc, char** argv) {
-    
-    //// Begin example code ////
-
-    // Code block
-    {
-        // Declaring integers
-        char a_i=1;         // Using char as an integer
-        short b_i=4;        // 16 bit
-        int c_i=2;          // 32 bit          
-        unsigned int d_i=3; // 32 bit
-        long e_i = 5;       // 64 bit
-    }
-
-    // This is a comment
-    char a='s'; // Using char as a character
-    char b = a+1; // Arithmetic with characters
-    std::printf("b interpreted as an integer: %i\n", b); // print b with the memory interpreted as an integer
-    std::printf("b interpreted as a character: %c\n", b); // print b with the memory interpreted as a character
-
-    // Making a string from characters, notice that 
-    // we have to have a null character '\0' 
-    // at the end of the array
-    char str[] = {'a', 'b', 'c', 'd', '\0'};
-    std::printf("%s\n", str);
-
-    // Declaring floating point value
-    float x=5.0;
-    double y=6.0;
-    long double z=7.0;
-
-    // Printing floats
-    std::printf("float representation, x = %f y = %f\n", x, y); // Print x and y to the screen with their memory interpreted as floats
-
-    //// End example code ////
-    
-    //// Begin Exercise 1 ////
-    
+        
     // The error is somewhere in the code below
     
     // The constants NROWS_C and NCOLS_C were defined in the file mat_size.hpp
@@ -85,14 +49,13 @@ int main(int argc, char** argv) {
 
     // Sanity check using an "if" statement
     if (fp != NULL) {
-        fwrite(arr, sizeof(float), (size_t)(N0_C*N1_C), fp);
+        std::fwrite(arr, sizeof(float), (size_t)(N0_C*N1_C), fp);
     } else {
         std::printf("File %s could not be opened\n", fname);
     }
 
     // Close the file and free the array
-    fclose(fp);
+    std::fclose(fp);
     free(arr);
     
-    //// End exercise 1 ////
 }
