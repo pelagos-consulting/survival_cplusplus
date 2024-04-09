@@ -24,9 +24,19 @@ void m_random(T* dst, size_t N0, size_t N1) {
     }
 }
 
+// Array indexing functions
+size_t offset_col_major(size_t i0, size_t i1, size_t N0, size_t N1) {
+    return i0 + i1*N0;
+}
+
+size_t offset_row_major(size_t i0, size_t i1, size_t N0, size_t N1) {
+    return i0*N1 + i1;
+}
+
+
 // Function to print out a matrix
 template<typename T>
-void m_show_matrix(T* src, size_t N0, size_t N1) {
+void m_show_matrix(T* src, size_t N0, size_t N1, bool row_major=true) {
 
     // Set precision
     std::cout.precision(2);
@@ -36,14 +46,20 @@ void m_show_matrix(T* src, size_t N0, size_t N1) {
         std::cout << "-";
     }
 
+    // Pointer to offset function
+    size_t (*offset_fun)(size_t, size_t, size_t, size_t) = offset_row_major;
+    if (!row_major) offset_fun = offset_col_major;
+    
     std::cout << "\n";
 
     // Pretty print the matrix
     for (size_t i0=0; i0<N0; i0++) {
 
         for (size_t i1=0; i1<N1; i1++) {
-            size_t offset = i0*N1 + i1;
 
+            // Calculate the offset into the array
+            size_t offset = offset_fun(i0,i1,N0,N1);
+                
             if (i1==0) {
                 std::cout << "|";
             }
