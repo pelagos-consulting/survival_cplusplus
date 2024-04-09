@@ -11,7 +11,7 @@ typedef float float_type;
 
 // C++ function to fill an allocation 
 // with the 
-void fill(
+void fill_kernel(
     // pointer to allocation
     float_type* A, 
     // position along dimension 0
@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
 
     for (int i0=0; i0<N0; i0++) {
         for (int i1=0; i1<N1; i1++) {
-            fill(arr, i0, i1, N0, N1);    
+            fill_kernel(arr, i0, i1, N0, N1);    
         }
     }
 
