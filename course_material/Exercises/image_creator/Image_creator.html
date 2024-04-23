@@ -7663,6 +7663,10 @@ a.anchor-link {
 </ul>
 <div class="highlight"><pre><span></span>gdb<span class="w"> </span>./image_creator.exe
 </pre></div>
+<p>or, if you have access to Setonix or other system with ROCM installed.</p>
+<div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>rocm/5.4.3
+rocgdb<span class="w"> </span>./image_creator.exe
+</pre></div>
 <ul>
 <li>Now within gdb type <code>run</code>
 to start the program. It will execute until it crashes</li>

@@ -22,6 +22,8 @@ float more_complex(float *p, float a) { // Takes two arguments, a pointer and a 
 
 // A program to introduce basic datatypes
 int main(int argc, char** argv) {
+
+    // This is a comment
     
     //// Code block for declaring integers ////
     {
@@ -32,8 +34,6 @@ int main(int argc, char** argv) {
         long e_l = 5L;       // 64 bit
         unsigned long e_ul = 5UL;       // 64 bit
     }
-
-    // This is a comment
 
     //// Working with characters ////
     {
@@ -152,8 +152,8 @@ int main(int argc, char** argv) {
         std::cout << "Statically allocated array a at index 0 is: " << a[0] << "\n";
 
         // C-style printing
-        std::printf("%d\n", a[2]); // Using indexing operator
-        std::printf("%d\n", *(a+2)); // Using pointer arithmetic
+        std::printf("%i\n", a[2]); // Using indexing operator
+        std::printf("%i\n", *(a+2)); // Using pointer arithmetic
     }
 
     //// Dynamically allocated arrays ////
@@ -229,6 +229,6 @@ int main(int argc, char** argv) {
         std::cout << morewords.c_str() << "\n";
     }
 
-
+    /// See the example in cstyle_fileio.cpp for rudimentary file IO
 
 }

@@ -7587,6 +7587,7 @@ unzip<span class="w"> </span>-DD<span class="w"> </span>main.zip
 <li><a href="https://en.cppreference.com/w/">cppreference.com</a>, a definitive online reference for quick lookup of C and C++ syntax.</li>
 <li><a href="https://cplusplus.com/reference/">cplusplus.com</a>, another good resource with lots of examples.</li>
 </ul>
+<h4 id="Example-code">Example code<a class="anchor-link" href="#Example-code">¶</a></h4><p>Most of the code discussed in the sections below are also in the file <a href="basic_examples.cpp">basic_examples.cpp</a>. You can use this file as a quick reference for how things are done.</p>
 </div>
 </div>
 </div>
@@ -7774,7 +7775,7 @@ $$128 + 16 + 8 = 152. $$</p>
 <span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">e_l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5l</span><span class="p">;</span><span class="w">       </span><span class="c1">// 64 bit</span>
 <span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">e_ul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5ul</span><span class="p">;</span><span class="w"> </span><span class="c1">// 64 bit</span>
 </pre></div>
-<p>When putting numbers like this into a program, the compiler infers the number as an integer unless you decorate it with a <code>u</code> for unsigned, <code>l</code> for long, or a <code>ul</code> for unsigned long.</p>
+<p>When putting numbers like this into a program, the compiler infers the number as an integer and a type conversion will take place in the assignment unless you decorate the number with a <code>u</code> for unsigned, <code>l</code> for long, or a <code>ul</code> for unsigned long.</p>
 <p>The character type <code>char</code> is just an 8-Bit integer whose value is associated with a lookup table of ASCII characters. We can also create a character in C using the following form.</p>
 <div class="highlight"><pre><span></span><span class="c1">// Create a character</span>
 <span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'a'</span><span class="p">;</span>
@@ -7822,7 +7823,7 @@ $$128 + 16 + 8 = 152. $$</p>
 <li>If <strong>all</strong> the exponent bits are 1 and <strong>any</strong> of the bits in the mantissa are 1, the value is NaN.</li>
 <li>If <strong>all</strong> the exponent bits are 0, and <strong>any</strong> of the mantissa bits are not zero, we are in the range of <strong>subnormal</strong> numbers.</li>
 </ul>
-<p>Outside these special cases, the smallest value possible for <strong>E</strong> is $E=1$ and the largest is $E=2^{\mathrm{NBE}}-2=2 \times \mathrm{Bias}$. Within these limits, we see that a floating point number can describe values within the following range of numbers:</p>
+<p>Outside these special cases, the smallest value possible for <strong>E</strong> is $E=1$ and the largest is $E=2^{\mathrm{NBE}}-2=2 \times \mathrm{Bias}$. Within these limits, we see that a floating point number can describe values within the following (normal) range of numbers:</p>
 <table>
 <thead>
 <tr>
@@ -8323,7 +8324,7 @@ $$128 + 16 + 8 = 152. $$</p>
 <span class="kt">float</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="p">;</span>
 <span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="n">b</span><span class="p">;</span>
 </pre></div>
-<p>When representing decimal numbers in code, the default precision for the number is <code>double</code> unless you put a <code>f</code> (float) or <code>L</code> (long double) next to it. During math operations the precision is automatically converted to that of the variable, however you can avoid this conversion step by using the appropriate suffix next to it.</p>
+<p>When representing decimal numbers in code, the default precision for the number is <code>double</code> unless you put a <code>f</code> (float) or <code>l</code> (long double) next to it. During math operations the precision is automatically converted to that of the variable, however you can avoid this conversion step by using the appropriate suffix next to it.</p>
 </div>
 </div>
 </div>
@@ -8363,7 +8364,8 @@ $$128 + 16 + 8 = 152. $$</p>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">"%i is less than %i"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w">  </span>
 <span class="p">}</span>
 </pre></div>
-<p>When writing <code>if</code> statements one has to be very careful to adequately handle all of the different permuations that the choices provide and not leave any gaps. <strong>For</strong> loops are constructed in the following manner:</p>
+<p>When writing <code>if</code> statements one has to be very careful to adequately handle all of the different permuations that the choices provide and not leave any gaps.</p>
+<p><strong>For</strong> loops are constructed in the following manner:</p>
 <div class="highlight"><pre><span></span><span class="c1">// Demonstrating a for loop</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="o">=</span><span class="mi">12</span><span class="p">;</span>
 
@@ -8378,7 +8380,7 @@ $$128 + 16 + 8 = 152. $$</p>
 <div class="highlight"><pre><span></span><span class="c1">// Demonstrating a 2D for loop</span>
 
 <span class="c1">// initialise loop limits</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">=</span><span class="mi">12</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
 
 <span class="c1">//   starting condition; continue condition; increment</span>
 <span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">m</span><span class="o">&lt;</span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">m</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -8388,7 +8390,7 @@ $$128 + 16 + 8 = 152. $$</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-<p>The <code>printf</code> statement in the innermost loop is evaluated 120 times.</p>
+<p>The <code>printf</code> statement in the innermost loop is evaluated 6 times.</p>
 </div>
 </div>
 </div>
@@ -8453,7 +8455,7 @@ $$128 + 16 + 8 = 152. $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Dynamically-allocating-arrays-with-calloc-and-free,-new-and-delete">Dynamically allocating arrays with <code>calloc</code> and <code>free</code>, <code>new</code> and <code>delete</code><a class="anchor-link" href="#Dynamically-allocating-arrays-with-calloc-and-free,-new-and-delete">¶</a></h3><p>Sometimes we don't know how big an array needs to be, or we know for sure that the array is too big to fit into the stack. In such cases we can <strong>dynamically</strong> allocate memory at runtime from a large pool of available memory called the <strong>heap</strong>. Two such functions to reserve memory are <strong><a href="https://www.cplusplus.com/reference/cstdlib/calloc/">calloc</a></strong> and <strong><a href="https://www.cplusplus.com/reference/cstdlib/malloc/">malloc</a></strong>. Malloc is fast, however I prefer <code>calloc</code> because unlike <code>malloc</code> it always initialises the memory contents with zeros. Memory allocation with <code>calloc</code> looks like the following, and you need to include the header <code>&lt;cstdlib&gt;</code> to access these functions.</p>
+<h3 id="Dynamically-allocating-arrays-with-calloc-and-free,-new-and-delete">Dynamically allocating arrays with <code>calloc</code> and <code>free</code>, <code>new</code> and <code>delete</code><a class="anchor-link" href="#Dynamically-allocating-arrays-with-calloc-and-free,-new-and-delete">¶</a></h3><p>Sometimes we don't know how big an array needs to be, or we know for sure that the array is too big to fit into the stack. In such cases we can <strong>dynamically</strong> allocate memory at runtime from a large pool of available memory called the <strong>heap</strong>. In C and C++ two such functions to reserve memory are <strong><a href="https://www.cplusplus.com/reference/cstdlib/calloc/">calloc</a></strong> and <strong><a href="https://www.cplusplus.com/reference/cstdlib/malloc/">malloc</a></strong>. Malloc is fast, however I prefer <code>calloc</code> because unlike <code>malloc</code> it always initialises the memory contents with zeros. Memory allocation with <code>calloc</code> looks like the following, and you need to include the header <code>&lt;cstdlib&gt;</code> to access these functions.</p>
 <div class="highlight"><pre><span></span><span class="kt">size_t</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1024</span><span class="p">;</span>
 <span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span><span class="w"> </span><span class="c1">// Allocates memory for 1024 floats</span>
 </pre></div>
@@ -8623,7 +8625,7 @@ pattern until the stride vector is filled.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="File-IO">File IO<a class="anchor-link" href="#File-IO">¶</a></h2><p>There are much better ways to write binary data to files, using self-descriptive and cross-platform formats like <a href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a>. Sometimes though you might be stuck and just need a quick way to get your data in and out of your program for <strong>testing and verification purposes</strong>. Within the C subset of the C++ language there is a simple way to read and write binary data, using the endian representation that your architecture supports. You just have to be aware that this data may not be portable to other architectures without accounting for differences in endianess, so its not advisable to use raw binary dumps as standard practice for actual production code.</p>
+<h2 id="Rudimentary-File-IO">Rudimentary File IO<a class="anchor-link" href="#Rudimentary-File-IO">¶</a></h2><p>There are much better ways to write binary data to files, using self-descriptive and cross-platform formats like <a href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a>. Sometimes though you might be stuck and just need a quick way to get your data in and out of your program for <strong>testing and verification purposes</strong>. Within the C subset of the C++ language there is a simple way to read and write binary data, using the endian representation that your architecture supports. You just have to be aware that this data may not be portable to other architectures without accounting for differences in endianess, so it is <strong>not advisable</strong> to use raw binary dumps for actual production code.</p>
 <h3 id="Opening-and-closing-files">Opening and closing files<a class="anchor-link" href="#Opening-and-closing-files">¶</a></h3><p>The <strong>std::fopen</strong> function and <strong>std::fclose</strong> pair of functions open and close files. The <strong>std::fopen</strong> function takes the form:</p>
 <div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">fopen</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">fname</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">mode</span><span class="p">)</span>
 </pre></div>
@@ -8749,7 +8751,7 @@ pattern until the stride vector is filled.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Reading-and-writing-binary-data-with-fread-and-fwrite">Reading and writing binary data with <strong>fread</strong> and <strong>fwrite</strong><a class="anchor-link" href="#Reading-and-writing-binary-data-with-fread-and-fwrite">¶</a></h3><p>Once a file is open in binary mode you can use the <strong>std::fread</strong> and <strong>std::fwrite</strong> functions to read and write data. Both functions have the same signature.</p>
+<h3 id="Reading-and-writing-binary-data-with-fread-and-fwrite">Reading and writing binary data with <strong>fread</strong> and <strong>fwrite</strong><a class="anchor-link" href="#Reading-and-writing-binary-data-with-fread-and-fwrite">¶</a></h3><p>Once a file is open in binary mode, you can use the <strong>std::fread</strong> and <strong>std::fwrite</strong> functions to read and write data. Both functions have the same signature.</p>
 <div class="highlight"><pre><span></span><span class="c1">// Binary read</span>
 <span class="kt">size_t</span><span class="w"> </span><span class="nf">std::fread</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">element_size</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nelements</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="p">);</span>
 <span class="c1">// Binary write</span>

@@ -9,8 +9,8 @@
 
 typedef float float_type;
 
-// C++ function to fill an allocation 
-// with the 
+// C++ function to fill a 2D allocation 
+// with the value i0*i1
 void fill_kernel(
     // pointer to allocation
     float_type* A, 
