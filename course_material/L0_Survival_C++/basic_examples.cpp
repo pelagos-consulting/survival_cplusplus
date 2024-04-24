@@ -1,7 +1,9 @@
 #include <cstdio>
 #include <iostream>
+#include <cstddef>
 #include <vector>
 #include <string>
+#include <cmath>
 
 // Functions
 void simple() { // Takes no arguments and returns no values, we use void as the return type
@@ -19,7 +21,6 @@ float more_complex(float *p, float a) { // Takes two arguments, a pointer and a 
     return *p + 1; // return the value pointed to by p, but add 1
 }
 
-
 // A program to introduce basic datatypes
 int main(int argc, char** argv) {
 
@@ -31,8 +32,8 @@ int main(int argc, char** argv) {
         short b_i=4;        // 16 bit
         int c_i=2;          // 32 bit          
         unsigned int d_i=3u; // 32 bit
-        long e_l = 5L;       // 64 bit
-        unsigned long e_ul = 5UL;       // 64 bit
+        long e_l = 5l;       // 64 bit
+        unsigned long e_ul = 5ul;       // 64 bit
     }
 
     //// Working with characters ////
