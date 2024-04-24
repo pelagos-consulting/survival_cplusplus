@@ -8546,13 +8546,6 @@ $$128 + 16 + 8 = 152. $$</p>
 
 <span class="c1">// Print element 0 as a character </span>
 <span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">"%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-
-<span class="c1">// Print a float</span>
-<span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">"%f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
-
-<span class="c1">// Print a float using scientific notation</span>
-<span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">"%e</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
 </pre></div>
 <p>When strings are declared in this way, there is no need to explicitly assign a null character to the last element. The compiler does it for you. Inserting a null character may become necessary if you have an array of characters and  want to use that array as a string.</p>
 <h4 id="C++-style-strings">C++-style strings<a class="anchor-link" href="#C++-style-strings">¶</a></h4><p>C++ introduces a new object for string handling that works very much like a <code>vector</code>. Firstly, we need to have this in the header,</p>
